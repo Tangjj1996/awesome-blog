@@ -27,6 +27,8 @@ module.exports = {
         ],
         // 侧边栏
         sidebar: utils.interSiderbars(),
+
+        repo: 'Tangjj1996/awesome-blog',
         // 侧边栏提取深度
         sidebarDepth: 3,
         // 最近更新
