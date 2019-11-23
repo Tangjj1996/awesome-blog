@@ -1,3 +1,5 @@
+const utils = require('./utils')
+
 module.exports = {
     // 基础配置
     title: "唐吉的进击课堂",
@@ -18,56 +20,19 @@ module.exports = {
         // 顶部导航
         nav: [
             { text: '首页', link: '/' },
-            { text: "技术", link: '/technology/mysql' },
-            { text: "blog", link: '/blog/vueSkill' },
-            { text: "成长", link: '/growth/thinkMore' },
-            { text: "心情", link: '/journal/happyDay' },
+            { text: "技术", link: '/technology/' },
+            { text: "blog", link: '/blog/' },
+            { text: "成长", link: '/growth/' },
+            { text: "心情", link: '/journal/' },
         ],
         // 侧边栏
-        sidebar: {
-            '/technology/': [
-                {
-                    title: '文档',
-                    collapsable: false,
-                    children: [
-                        ['/technology/mysql', 'mysql简单介绍']
-                    ]
-                }
-            ],
-            '/blog/': [
-                {
-                    title: '博客',
-                    collapsable: false,
-                    children: [
-                        ['/blog/vueSkill', 'VUE开发技巧'],
-                        ['/blog/promise', '手写一个Promise'],
-                        ['/blog/permission', '前端权限校验的四种常见用法']
-                    ]
-                }
-            ],
-            '/growth/': [
-                {
-                    title: '成长路上',
-                    collapsable: false,
-                    children: [
-                        ['/growth/thinkMore', '😄']
-                    ]
-                }
-            ],
-            '/journal/': [
-                {
-                    title: '日志',
-                    collapsable: false,
-                    children: [
-                        ['/journal/happyDay', '😀']
-                    ]
-                }
-            ]
-        },
+        sidebar: utils.interSiderbars(),
         // 侧边栏提取深度
-        sidebarDepth: 2,
+        sidebarDepth: 3,
         // 最近更新
-        lastUpdated: 'Last Updated'
+        lastUpdated: 'Last Updated',
+        // 编辑此页
+        editLinkText: '在 GitHub 上编辑此页',
     },
 
     // webpack 配置

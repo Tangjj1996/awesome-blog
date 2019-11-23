@@ -1,6 +1,6 @@
 module.exports = [
-    { title: "技术", link: 'technology/mysql' },
-    { title: "blog", link: 'blog/vueSkill' },
-    { title: "成长", link: 'growth/thinkMore' },
-    { title: "心情", link: 'journal/happyDay' }
+    { title: "文档", link: 'technology' },
+    { title: "博客", link: 'blog' },
+    { title: "成长路上", link: 'growth' },
+    { title: "日志", link: 'journal' }
 ]

@@ -14,7 +14,7 @@ exports.interSiderbars = () => {
                 item.endsWith('.md') && fs.statSync(path.join(dirpath, item)).isFile()
             )
             .sort((prev, next) => { next.includes('README.md') ? 1 : 0})
-            .map(item => item.replace(/(README)?(.md)&/, ''))
+            .map(item => item.replace(/(README)?(.md)$/, ''))
 
         sidebar[parent] = [
             {
