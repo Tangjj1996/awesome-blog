@@ -20,8 +20,8 @@ module.exports = {
         // 顶部导航
         nav: [
             { text: '首页', link: '/' },
-            { text: "技术", link: '/technology/' },
             { text: "blog", link: '/blog/' },
+            { text: "技术", link: '/technology/' },
             { text: "成长", link: '/growth/' },
             { text: "心情", link: '/journal/' },
         ],

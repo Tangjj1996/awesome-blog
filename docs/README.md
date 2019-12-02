@@ -3,7 +3,7 @@
     "home": true,
     "heroImage": "/avatar.jpg",
     "actionText": "了解一下 →",
-    "actionLink": "/technology/",
+    "actionLink": "/blog/",
     "features": [
         {
         "title": "基础",

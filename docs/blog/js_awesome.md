@@ -1,8 +1,9 @@
-# 手写一个Promise 
+# 灵活运用js ---原生篇
 
+## 1. 手写一个Promise
 **Promise**是es6中的一个重要语法，在日常开发中非常常用，在Promise出现之前，函数只能通过callback的形式调用表示函数的执行顺序，而层层回调又不可避免地造成回调地狱，代码变得非常不好维护，也不美观。Promise解决了这一痛点，很多常见的库比如`axios`都是基于Promise结合`ajax`进行封装的，当然Promise作用不止于此，咱们现在就通过Promise的外在表现，从零开始构建出一个完整的Promise构造函数，暂且把它称作**MyPromise**吧~
 
-## 1. Fn同步执行
+### 1. Fn同步执行
 
 Promise内的函数是同步执行的，那么以下代码应该先打印111，再打印222
 
@@ -28,7 +29,7 @@ let a = new MyPromise((resolve, reject) => {
 console.log(222)  // 再打印 222
 ```
 
-## 2. then方法接受resolve或者reject方法的参数
+### 2. then方法接受resolve或者reject方法的参数
 
 在Promise中，then的第一个参数接收resolve的参数值，即成功的回调；then的第二个参数接收reject的参数值，即失败的回调。
 
@@ -116,7 +117,7 @@ function reject(parmas) {
 }
 ```
 
-## 3. 异步调用函数
+### 3. 异步调用函数
 
 前面我们说了，Promise最常用的地方是处理回调，特别是异步回调，能很友好地解决回调地狱的问题，从未增加代码的可阅读性以及更容易维护。假设resolve函数并不是直接调用的，而是一个异步调用的形式，比如这种
 
@@ -169,6 +170,42 @@ this.then = function(onFullFilled, onRejected) {
     let deffer = { onFullFilled, onRejected }
     deffers.push(deffer)
     handler(deffer)
+}
+```
+
+## 2. 手写call、apply和bind
+
+```js
+Function.prototype.myCall = function(context, ...args) {
+    context = (typeof context === 'object' ? context : window)
+    
+    const key = Symbol()
+    context[key] = this
+    
+    const result = context[key](...args)
+    delete context[key]
+    
+    return result
+}
+
+Function.prototype.myBind = function(context, args) {
+    context = (typeof context === 'object' ? context : window)
+    
+    const key = Symbol()
+    context[key] = this
+    
+    const result = context[key](...args)
+    delete context[key]
+    
+    return result
+}
+
+Function.prototype.myBind = funtion(context) {
+    context = (typeof context === 'object' ? context : window)
+    
+    return (...args) => {
+        this.call(context, ...args)
+    }
 }
 ```
 
