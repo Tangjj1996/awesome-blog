@@ -173,7 +173,7 @@ this.then = function(onFullFilled, onRejected) {
 }
 ```
 
-## 2. 手写call、apply和bind
+## 2. 手写可改变作用域的三个方法call、apply以及bind
 
 ```js
 Function.prototype.myCall = function(context, ...args) {
@@ -209,3 +209,38 @@ Function.prototype.myBind = funtion(context) {
 }
 ```
 
+## 3. 手写数组常用方法包括slice、filter、reduce等
+```js
+Array.prototype.myReduce = function(callback) {
+    // 保存调用的执行上下文
+    let context = this, // 这里指向 -> arr
+    // 数组下标
+    index = 0,
+    // 初值
+    prev,
+    // 接受返回值
+    next
+
+    if (typeof callback !== 'function') { throw new TypeError('参数必须是一个回调函数') }
+
+    if (arguments.length > 1) {
+        prev = arguments[1]
+    } else {
+        prev = context[index]
+        index++
+    }
+    while(index < context.length) {
+        next = context[index]   
+        // 把执行结果返回给上一个值     
+        prev = callback.apply(null, [prev, next, index, context])    
+        index++    
+    }
+    return prev
+}
+
+const arr = [1, 2, 3, 4]
+arr.myReduce((prev, next) => {
+    console.log(prev)
+    return prev + next
+}, 0)
+```
