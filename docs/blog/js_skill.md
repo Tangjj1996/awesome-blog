@@ -242,4 +242,3 @@ function deepSequence (propTree, func) {
 
 deepSequence(tree, node => console.log(node))
 ```
-

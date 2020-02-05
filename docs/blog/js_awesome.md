@@ -3,7 +3,7 @@
 ## 1. 手写一个Promise
 **Promise**是es6中的一个重要语法，在日常开发中非常常用，在Promise出现之前，函数只能通过callback的形式调用表示函数的执行顺序，而层层回调又不可避免地造成回调地狱，代码变得非常不好维护，也不美观。Promise解决了这一痛点，很多常见的库比如`axios`都是基于Promise结合`ajax`进行封装的，当然Promise作用不止于此，咱们现在就通过Promise的外在表现，从零开始构建出一个完整的Promise构造函数，暂且把它称作**MyPromise**吧~
 
-### 1. Fn同步执行
+### 1.1 Fn同步执行
 
 Promise内的函数是同步执行的，那么以下代码应该先打印111，再打印222
 
@@ -29,7 +29,7 @@ let a = new MyPromise((resolve, reject) => {
 console.log(222)  // 再打印 222
 ```
 
-### 2. then方法接受resolve或者reject方法的参数
+### 1.2 then方法接受resolve或者reject方法的参数
 
 在Promise中，then的第一个参数接收resolve的参数值，即成功的回调；then的第二个参数接收reject的参数值，即失败的回调。
 
@@ -117,7 +117,7 @@ function reject(parmas) {
 }
 ```
 
-### 3. 异步调用函数
+### 1.3 异步调用函数
 
 前面我们说了，Promise最常用的地方是处理回调，特别是异步回调，能很友好地解决回调地狱的问题，从未增加代码的可阅读性以及更容易维护。假设resolve函数并不是直接调用的，而是一个异步调用的形式，比如这种
 
@@ -243,4 +243,57 @@ arr.myReduce((prev, next) => {
     console.log(prev)
     return prev + next
 }, 0)
+```
+
+## 3. 正则表达式与replace
+
+replace是js语言中字符串操作必不可少的原生支持的工具函数，支持正则表达式，功能十分强大。
+
+> 语法： str.replace(regexp|substr, newSubStr|function)
+> 注意： replace函数不会影响原来的字符串，只会返回一个新的字符串，当你希望得到这个新值，需要重新赋值
+
+简单的就不举例了，需要留意的是，当你把正则作为第一个参数，并且想要全局匹配，需要在正则后面加全局修饰符`/g`
+
+replace的第二个参数是字符串，可以在字符串中使用一些通配符，以`$`开头
+
+|变量名|代表的值|
+|:--:|:--|
+|$$|插入一个"$"|
+|$&|插入匹配的子串|
+|$`|插入当前匹配的字串左边的内容|
+|$'|插入当前匹配的字串右边的内容|
+|$n|假如第一个参数是`RegExp`对象,并且n是小于100的正整数，插入第n个括号匹配的字符串，索引从1开始
+
+举两个例子
+```js
+// 格式化金钱
+// \B非边界
+// ?=正向先行断言
+// ?!负向先行断言
+// 全局匹配money,该非边界符合后面出现1次或多次三个数字，并且末尾不能有数字
+// 第一次匹配到3 和 4的非边界，规则是'456'和'789'为两次三个数字，并且'789'后面不包含数字
+// 假如第一次匹配到的是1 和 2的非边界，那么'234'和'567'为两次三个数字，但是'567'后面包含了数字'89'
+const reg = /\B(?=(\d{3})+(?!\d))/g
+const money = '123456789.10'
+
+money.replace(reg, ',')
+// 输出
+// 123,456,789.10
+```
+
+```js
+// 格式化字符串变量
+// 当匹配到{}变量，如果$1在agruments[0]能找到key,则用value替换，否则把匹配到的字串也就是原来的{}字段，原样返回
+String.prototype.format = function () {
+    let args = typeof arguments[0] === 'object' ? arguments[0] : arguments
+
+    return this.replace(/\{(.*?)\}/g, (m, p1) => {
+        return p1 in args ? args[p1] : m
+    })
+}
+
+const str = 'name: {name}, age: {age}'
+str.format({ name: 'tangj', age: 25 })
+// 输出
+// name: tangji, age: 25
 ```
