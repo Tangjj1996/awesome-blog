@@ -245,7 +245,7 @@ arr.myReduce((prev, next) => {
 }, 0)
 ```
 
-## 3. 正则表达式与replace
+## 4. 正则表达式与replace
 
 replace是js语言中字符串操作必不可少的原生支持的工具函数，支持正则表达式，功能十分强大。
 
