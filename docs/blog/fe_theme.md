@@ -61,7 +61,9 @@ writeNewStyle() {
 
 [less文档](https://www.html.cn/doc/less/usage/#using-less-in-the-browser)有详细的使用教程，大概就是你把`less.js`直接通过`<script>`标签引入到项目中，它会自动找到`less`样式标签（这需要你以`<link rel='stylesheet/less'>`引入），并且使用已编译的css同步创建`<style>`标签。
 
-> 通过`<link>`标签在`html`引入，要注意位置，如果你是在`<head>`中，很可能会被后来生成的样式文件干扰，最好放在`<body>`中或者设置一下引入的顺序
+::: tip
+通过`<link>`标签在`html`引入，要注意位置，如果你是在`<head>`中，很可能会被后来生成的样式文件干扰，最好放在`<body>`中或者设置一下引入的顺序
+:::
 
 ## 4. css自定义变量的方式
 
