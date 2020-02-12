@@ -21,8 +21,8 @@ module.exports = {
         nav: [
             { text: '首页', link: '/' },
             { text: "blog", link: '/blog/' },
-            { text: "前端", link: '/FE/vue' },
-            { text: "后端", link: '/EE/mysql' }
+            { text: "前端", link: '/FE/' },
+            { text: "后端", link: '/EE/' }
         ],
         // 侧边栏
         sidebar: utils.interSiderbars(),
