@@ -116,7 +116,7 @@ const onBtn = (identity, state) => {
 }
 ```
 
-`Map`数据结构给js增加了更多的可能性，以后写逻辑判断可千万别只会`if/else`或者`switch`了，思路开阔一些能让代码变得更简洁，😄
+`Map`数据结构给js增加了更多的可能性，以后写逻辑判断可千万别只会`if/else`或者`switch`了，思路开阔一些能让代码变得更简洁:grinning:
 
 ## 2. 树节点遍历
 
