@@ -1,5 +1,6 @@
 module.exports = [
-    { title: "前端文档", link: 'FE' },
-    { title: "后端文档", link: "EE" },
-    { title: "博客", link: 'blog' }
+    { title: "前端源码分析", link: 'FE' },
+    { title: "后端小书", link: "EE" },
+    { title: "博客", link: 'blog' },
+    { title: '优秀博文', link: 'lib' }
 ]
