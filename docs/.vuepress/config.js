@@ -21,6 +21,7 @@ module.exports = {
         nav: [
             { text: '首页', link: '/' },
             { text: "blog", link: '/blog/' },
+            { text: '库', link: '/lib/' },
             { text: "前端", link: '/FE/' },
             { text: "后端", link: '/EE/' }
         ],
