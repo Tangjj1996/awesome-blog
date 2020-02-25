@@ -1,13 +1,13 @@
 # Viewport
 
-## meat标签
+## meta标签
 
 > <meta name='viewport' content="width=device-width,initial-scale=1,user-scalable=no">
 
 - px 逻辑像素
 - dp 设备像素、物理像素
 - ppi 屏幕每英寸像素数量
-- dpr 设备像素所方比 dpr = dp / px
+- dpr 设备像素所方比 dpr = (dp ^ 2) / px
 - iphone5: 4英寸，1136 * 640， 分辨率320*568px如何计算出来的？
 
 ||ldpr|mdpr|hdpr|xdpr|

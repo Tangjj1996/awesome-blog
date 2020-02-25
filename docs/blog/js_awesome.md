@@ -191,6 +191,79 @@ this.then = function(onFullFilled, onRejected) {
 }
 ```
 
+完整代码（未完待续...）
+```js
+function Mypromise(fn) {
+    let value = undefined
+    let status = null
+    let isExe = false
+    let deffers = []
+
+    function resolve(val) {
+        if (!isExe) {
+            value = val
+            status = true
+            isExe = true
+            final(deffers)  // 异步时候保证then链在status之后执行
+        }
+    }
+
+    function rejected(reason) {
+        if (!isExe) {
+            value = reason
+            status = false
+            isExe = true
+            final(deffers)
+        }
+    }
+
+    function handle(deffer) {
+        if(status === true) {  // 判断条件，如果是异步此处的status为null
+            deffer['onFulFilled'] && deffer['onFulFilled'](value)
+        }
+
+        if(status === false) {
+            deffer['onRejected'] && deffer['onRejected'](value)
+        }
+    }
+
+    function final(deffers) {
+        deffers.forEach(deffer => handle(deffer))
+    }
+
+    this.then = (onFulFilled, onRejected) => {
+        const curPromise = new Mypromise((resolve, rejected) => {
+            setTimeout(() => {
+                const deffer = { onFulFilled, onRejected }
+                deffers.push(deffer)
+                const result =  handle(deffer)  
+                resolvePromise(curPromise, result, resolve, rejected)                
+            }, 0);
+        })
+
+        return curPromise
+    }
+
+    this.catch = (error) => {
+        if (typeof error === 'function') {
+            this.then(null, error)
+        }
+    }
+
+    fn(resolve, rejected)
+}
+
+const resolvePromise = (curPromise, result, resolve, rejected) => {
+    // ...
+}
+
+const p = new Mypromise((resolve, rejected) => {
+    resolve(22)
+})
+
+p.then(res => 1).then(res => console.log(res))
+```
+
 ## 2. 手写可改变作用域的三个方法call、apply以及bind
 
 ```js
@@ -206,7 +279,7 @@ Function.prototype.myCall = function(context, ...args) {
     return result
 }
 
-Function.prototype.myBind = function(context, args) {
+Function.prototype.myApply = function(context, args) {
     context = (typeof context === 'object' ? context : window)
     
     const key = Symbol()
@@ -218,7 +291,7 @@ Function.prototype.myBind = function(context, args) {
     return result
 }
 
-Function.prototype.myBind = funtion(context) {
+Function.prototype.myBind = function(context) {
     context = (typeof context === 'object' ? context : window)
     
     return (...args) => {
