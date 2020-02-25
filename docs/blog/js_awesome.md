@@ -1,7 +1,7 @@
 # 灵活运用js ---原生篇
 
 ## 1. 手写一个Promise
-**Promise**是es6中的一个重要语法，在日常开发中非常常用，在Promise出现之前，函数只能通过callback的形式调用表示函数的执行顺序，而层层回调又不可避免地造成回调地狱，代码变得非常不好维护，也不美观。Promise解决了这一痛点，很多常见的库比如`axios`都是基于Promise结合`ajax`进行封装的，当然Promise作用不止于此，咱们现在就通过Promise的外在表现，从零开始构建出一个完整的Promise构造函数，暂且把它称作**MyPromise**吧~
+**Promise**是es6中的一个重要语法，在日常开发中非常常用，在Promise出现之前，函数只能通过callback的形式调用表示函数的执行顺序，而层层回调又不可避免地造成回调地狱，代码变得非常不好维护，也不美观。Promise解决了这一痛点，很多常见的库比如`axios`都是基于Promise结合`ajax`进行封装的，当然Promise作用不止于此，咱们现在就通过Promise的外在表现，从零开始构建出一个完整的Promise构造函数，暂且把它称作**MyPromise**吧:tada:
 
 ### 1.1 Fn同步执行
 
@@ -39,28 +39,42 @@ console.log(222)  // 再打印 222
 
 ```js
 function MyPromise(fn) {
-    let value  // 保存resolve/reject的参数
-    let status  // 保存状态 -> true | false
+    let value = undefined  // 保存resolve/reject的参数
+    let status = null  // 保存状态 -> true | false
 
     fn(resolve, reject)
 
-    function resolve(params) {
-        value = params
+    function resolve(val) {
+        value = val
         status = true
     }
 
-    function reject(params) {
-        value = params
+    function reject(reason) {
+        value = reason
         status = false
     }
 
     function handler(deffer) {
-        status ? deffer['onFullFilled'](value) : deffer['onRejected'](value)
+        if (status === true) {
+            deffer['onFulFilled'] && deffer['onFulFilled'](value)
+            return
+        } 
+
+        if (status === false) {
+            deffer['onRjected'] && deffer['onRejected'](value)
+            return
+        }
     }
 
-    this.then = function (onFullFilled, onRejected) {
-        let deffer = { onFullFilled, onRejected }
+    this.then = function (onFulFilled, onRejected) {
+        let deffer = { onFulFilled, onRejected }
         handler(deffer)
+    }
+
+    this.catch(error) {
+        if (tyof error === 'function') {
+            this.then(null, error)
+        }
     }
 }
 
@@ -100,17 +114,17 @@ test1.then(res => {
 ...省略重复部分
 let isExe = false
 
-function resolve(parmas) {
+function resolve(val) {
     if (!isExe) {
-        value = parmas
+        value = val
         status = true
         isExe = true  // 只要执行就把isExe设为true,并且不再执行reject方法体的内容
     }
 }
 
-function reject(parmas) {
+function reject(reason) {
     if (!isExe) {
-        value = parmas
+        value = reason
         status = false
         isExe = true
     }
@@ -119,7 +133,7 @@ function reject(parmas) {
 
 ### 1.3 异步调用函数
 
-前面我们说了，Promise最常用的地方是处理回调，特别是异步回调，能很友好地解决回调地狱的问题，从未增加代码的可阅读性以及更容易维护。假设resolve函数并不是直接调用的，而是一个异步调用的形式，比如这种
+前面我们说了，Promise最常用的地方是处理回调，特别是异步回调，能很友好地解决回调地狱的问题，从未增加代码的可阅读性以及更容易维护，这是Promise的重点，采用了发布订阅（观察者）模式实现！假设resolve函数并不是直接调用的，而是一个异步调用的形式，比如这种
 
 ```js
 new Promise((resolve, reject) => {
@@ -134,18 +148,18 @@ new Promise((resolve, reject) => {
 ```js
 let deffers = []
 
-function resolve(params) {
+function resolve(val) {
     if (!isExe) {
-        value = parmas
+        value = val
         status = true
         isExe = true
         finnal(deffers)
     }
 }
 
-function reject(params) {
+function reject(reason) {
     if (!isExe) {
-        value = params
+        value = reason
         status = false
         isExe = true
         finnal(deffers)  
@@ -153,16 +167,20 @@ function reject(params) {
 }
 
 function finnal(deffers) {  // 遍历执行deffers数组
-    for (let i = 0; i < deffers.length; i++) {
+    for (let i = 0, len = deffers.length i < len; i++) {
         handler(deffers[i])
     }
 }
 
 function handler(deffer) {
-    if (status) {
+    if (status === true) {
         deffer['onFullFilled'] && deffer['onFullFilled'](value)
-    } else if (status === false) { // status声明未赋值，如果then存在第二个参数，那么会执行输出undefined，此处增加判断条件可避免这种情况
+        return
+    }
+    
+    if (status === false) { // status声明未赋值，如果then存在第二个参数，那么会执行输出undefined，此处增加判断条件可避免这种情况
         deffer['onRejected'] && deffer['onRejected'](value)
+        return
     }
 }
 
