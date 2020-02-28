@@ -73,3 +73,6 @@ restore() 恢复之前保存过的路径状态和属性
 getContext('2d') 获取2d对象
 toDataURL() 将canvas转换成图片，返回地址
 ```
+
+2. 触摸事件
+> touchstart touchmove touchend 触摸事件和鼠标事件最大的区别在于，触摸有可能会在同一时间有多个触摸点，而鼠标永远都是只有一个触摸点
