@@ -2,7 +2,7 @@
 > const canvas = document.getElemetById('canvas') //获取canvas元素<br>
 > const ctx = canvas.getContext('2d')  // 获取2d context对象
 
-1. canvas API
+## 1. canvas API
 
 ```
 rect(x, y, width, height) 绘制矩形
@@ -74,5 +74,26 @@ getContext('2d') 获取2d对象
 toDataURL() 将canvas转换成图片，返回地址
 ```
 
-2. 触摸事件
+## 2. 触摸事件
+
 > touchstart touchmove touchend 触摸事件和鼠标事件最大的区别在于，触摸有可能会在同一时间有多个触摸点，而鼠标永远都是只有一个触摸点
+
+## 3. transform(a, b, c, d, e, f)
+> a, d 水平、垂直缩放
+> b, c 水平、垂直倾斜
+> e, f 水平、垂直位移
+
+## 4. fillStyle
+> 线性渐变 Linear Gradient
+> *step 1* let grd = context.createLinearGradient(xstart, ystart, xend, yend)
+> *step 2* grd.addColorStop(stop, color) stop 关键帧 -> 0~1
+
+注意两点：
+1. 当渐变没有覆盖canvas，其余部分按最后stop的渐变显示
+2. 当渐变超过canvas，超过部分会被截断
+
+> 径向渐变 Radial Gradient
+> *step 1* let grd = context.createRadialGradient(x0, y0, r0, x1, y1, r1)
+> *step 2* grd.addColorStop(stop, color)
+
+> 图片填充 createPattern(img, repeat-style) repeat-style: no-repeat repeat-x repeat-y repeat
