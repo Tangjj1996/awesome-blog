@@ -97,3 +97,63 @@ toDataURL() 将canvas转换成图片，返回地址
 > *step 2* grd.addColorStop(stop, color)
 
 > 图片填充 createPattern(img, repeat-style) repeat-style: no-repeat repeat-x repeat-y repeat
+
+## 5. font
+> 默认值："20px sans-serif"
+> context.font = font-style font-variant font-weight font-size font-
+
+- font-style: normal (Default) italic (斜体字) oblique (倾斜字体)
+
+- font-variant: normal (Default) small-caps
+
+- font-weight: lighter normal (Default) bold bolder 
+
+> 100 200 300 400 (normal)
+> 500 600 700 (bold)
+> 800 900
+
+- font-size: 20px (Defalut)
+
+- font-family: @font-face
+
+## 6. text 对齐
+> textAlign: left center right 给定坐标为基准点
+> textBaseline: top middle bottom 给定坐标点为基准点 alphabetic (Default) 针对拉丁文 ideographic 针对方块字 hanging 针对印度文
+
+## 7. 文本的度量
+> context.measureText(string).width 暂时没有height
+
+## 8. 阴影
+> context.shadowColor 颜色
+
+> context.shadowOffsetX x轴偏移
+> context.shadowOffsetY y轴偏移
+
+> context.shadowBlur 模糊值
+
+## 9. global 样式
+> globalAlpha 不透明度
+> globalCompositeOperation = "source-over" (Default) destination-over 前绘制压在后绘制上
+
+- source-over (Default)
+- source-atop
+- source-in
+- source-out
+
+- destination-over
+- destination-atop
+- destination-in
+- destination-out
+
+- lighter 交叉
+- copy 复制后一个
+- xor 异或
+
+## 10. 剪辑区域
+> context.clip() 制造一个剪辑区域，绘制的渲染区域只能在clip内
+
+## 11. 非零环绕
+> 图形内部的绘制方向与外部不同，则会认为内部是0，当使用fill填充时，只会填充中间为1的部分，即剪纸效果
+
+## 12. canvasRenderingContext2D 原型对象
+> 把自定义的方法挂在到原型上 canvasRenderingContext2D.prototype 
