@@ -157,3 +157,8 @@ toDataURL() 将canvas转换成图片，返回地址
 
 ## 12. canvasRenderingContext2D 原型对象
 > 把自定义的方法挂在到原型上 canvasRenderingContext2D.prototype 
+
+## 13. 绘制图像
+> context.drawImage(image, x, y)
+> context.drawImage(image, x, y, width, height)
+> context.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh)  将原图像的某个部分渲染到 canvas 中的destination指定位置
