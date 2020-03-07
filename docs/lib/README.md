@@ -40,6 +40,8 @@
 
 - [github README emoji](https://github.com/guodongxiaren/README/blob/master/emoji.md?tdsourcetag=s_pcqq_aiomsg)
 
+- [vuePress emoji](https://github.com/markdown-it/markdown-it-emoji/blob/master/lib/data/full.json)
+
 # 牛人博客站
 
 - [思否答题大神--木马](http://wintc.top/)
