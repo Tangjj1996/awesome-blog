@@ -56,7 +56,7 @@ meta标签的组成：meta标签共有两个属性，它们分别是http-equiv�
 
 - Pragma cache模式 禁止浏览器从本地计算机的缓存中访问页面内容 `<meta http-equiv="Pragma" content="no-cache">`，这样设定，访问者将无法脱机浏览
 
-- Refresh 刷新 自动刷新并指向新页面 `<meta http-equiv="Refresh" content="2;URL=http://www.tangji.com">`，其中2是指停留2秒钟后自动刷新到URL网址
+- Refresh 刷新 自动刷新并指向新页面 `<meta http-equiv="Refresh" content="2;URL=***">`，其中2是指停留2秒钟后自动刷新到URL网址
 
 - Set-Cookie 如果网页过期，那么存盘的cookie将被删除 `<meta http-equiv="Set-Cookie" content="cookievalue=xx;expires=Friday;path=/">`
 
