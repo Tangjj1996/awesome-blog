@@ -264,6 +264,12 @@ const p = new Mypromise((resolve, rejected) => {
 p.then(res => 1).then(res => console.log(res))
 ```
 
+async/await 异步编程的终极方案 - 以同步的方式写异步
+
+- await 关键字可以“暂停”async function 的执行
+- await 关键字可以以同步的写法获取Promise的执行结果
+- try-catch 可以获取await所得到的错误，特别是settimeout抛出的错误是在全局的调用栈中，无法在函数捕获，利用async/await就能做到这点
+
 ## 2. 手写可改变作用域的三个方法call、apply以及bind
 
 ```js

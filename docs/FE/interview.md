@@ -44,27 +44,27 @@ meta标签的组成：meta标签共有两个属性，它们分别是http-equiv�
 - description 描述
 - robots 机器人向导，告诉搜索机器人哪些页面需要索引，哪些页面不需要索引
 - author 作者
-- render 渲染 <meta name='render' content='webkit'> 告诉浏览器渲染模式
+- render 渲染 `<meta name='render' content='webkit'>` 告诉浏览器渲染模式
 
 2. http-equiv属性
 
 相当于http的文件头作用，它可以向浏览器传回一些有用的信息，以帮助正确和精确地显示内容，与之对应的属性值为content，content中的内容其实就是各个参数的变量值
 
-- X-UA-Compatible 浏览模式 <meta http-equiv="X-UA-Compatile" content="IE-edge">
+- X-UA-Compatible 浏览模式 `<meta http-equiv="X-UA-Compatile" content="IE-edge">`
 
-- Exppires 期限 用于设定网页的到期时间，一旦网页过期，必须到服务器上重新传输 <meta http-equiv='expires' content="Fri ...."> 必须使用GMT的时间格式
+- Exppires 期限 用于设定网页的到期时间，一旦网页过期，必须到服务器上重新传输 `<meta http-equiv='expires' content="Fri ....">` 必须使用GMT的时间格式
 
-- Pragma cache模式 禁止浏览器从本地计算机的缓存中访问页面内容 <meta http-equiv="Pragma" content="no-cache">，这样设定，访问者将无法脱机浏览
+- Pragma cache模式 禁止浏览器从本地计算机的缓存中访问页面内容 `<meta http-equiv="Pragma" content="no-cache">`，这样设定，访问者将无法脱机浏览
 
-- Refresh 刷新 自动刷新并指向新页面 <meta http-equiv="Refresh" content="2;URL=http://www.tangji.com">，其中2是指停留2秒钟后自动刷新到URL网址
+- Refresh 刷新 自动刷新并指向新页面 `<meta http-equiv="Refresh" content="2;URL=http://www.tangji.com">`，其中2是指停留2秒钟后自动刷新到URL网址
 
-- Set-Cookie 如果网页过期，那么存盘的cookie将被删除 <meta http-equiv="Set-Cookie" content="cookievalue=xx;expires=Friday;path=/">
+- Set-Cookie 如果网页过期，那么存盘的cookie将被删除 `<meta http-equiv="Set-Cookie" content="cookievalue=xx;expires=Friday;path=/">`
 
-- Window-taget 显示窗口的设定 强制页面在当前窗口以独立页面显示 <meta http-equiv="Window-target" content="_blank">，用来防止别人在框架里调用自己的页面
+- Window-taget 显示窗口的设定 强制页面在当前窗口以独立页面显示 `<meta http-equiv="Window-target" content="_blank">`，用来防止别人在框架里调用自己的页面
 
-- content-Type 显示字符集的设定 <meta http-equiv="content-Type" content="text/html;charset=gb2312"> 设定页面使用的字符集
+- content-Type 显示字符集的设定 `<meta http-equiv="content-Type" content="text/html;charset=gb2312">` 设定页面使用的字符集
 
-- content-Language 显示语言的设定 <meta http-equiv='Content-Language' content="zh-cn">
+- content-Language 显示语言的设定 `<meta http-equiv='Content-Language' content="zh-cn">`
 
 - Cache-Control Cache-Control指定请求和响应遵循的缓存机制。在请求消息或响应消息中设置Cache-Control并不会修改另一个消息处理过程中的缓存处理过程。请求时的缓存指令包括no-cache、no-store、max-age、max-stale、min-fresh、only-if-cached，响应消息中的指令包括public、private、no-cache、no-store、no-transform、must-revalidate、proxy-revalidate、max-age。各个消息中的指令含义如下:
 
