@@ -5,8 +5,8 @@
 # node.js
 
 - [node.js小书--i5ting](https://github.com/i5ting/How-to-learn-node-correctly)
-
 - [EventLoop在浏览器和node环境的区别](https://segmentfault.com/a/1190000021295911)
+- [深入理解Node.js: 核心思想与源码分析](https://yjhjstz.gitbooks.io/deep-into-node/content/)
 
 # webpack
 
