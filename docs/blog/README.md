@@ -48,9 +48,31 @@
 
 **regExp** --- 匹配文件的正则
 
-该函数会返回一个函数，
+该函数会返回一个webpackContext函数，同时这个函数还有一个keys属性（没错，在Js语法中函数是可以拥有属性的，大部分函数至少有一个name和prototype属性，匿名函数没有name箭头函数和new之后返回的函数没有prototype），并且这个keys属性也是一个方法，调用返回该目录下文件名.
+
+webpackContext函数会直接输出文件导出的内容，但是因为es6的import / export default 语法，当你真正想拿到里面内容的时候，还需要取这个对象的`default`属性。建议把所有需要导出的内容都写在`export default`中，统一处理
+
+所以，你大概可以写成这样
+```js
+const webpackContext = require.context('./tree', false, /\.js/i)
+
+const res = webpackContext.keys().reduce((module, pathname) => {
+    const key = pathname.replace(/^\.\/(.*)\.\w+$/, "$1")
+    module[key] = webpackContext(pathname)['default'] 
+
+    return module    
+}, {})
+```
 
 ## 3. 高阶组件属性中的$attrs和$listeners
+
+这两个API都是2.4.x新增的，`$attrs`包含父作用域中不作为prop被识别（且获取），即父组件传入子组件没有主动获取的props，除了class和style。当一个组件没有声明任何prop时，这里会包含所有父作用域的绑定，并且可以通过`v-bind="$attrs"`，传入内部组件
+
+父组件 -> 子组件1 -> 子组件1-1
+
+父组件传入子组件1的props，子组件1没有主动获取，即子组件1中没有接受这些prop，当你在子组件1使用`$attrs`可以直接把父组件的props传给子组件1-1。这在高级组件还是挺有用的，你需要借助子组件1进行props转发，不用每一层都把父组件的props写上
+
+`$listeners`和`$attrs`用法相似，只不过这时候它转发的是包含父作用域中（不包含`.native`修饰器的）`v-on`事件监听器。它可以通过`v-on="$listeners"`传入内容组件
 
 ## 4. 动态路由addRouter
 
