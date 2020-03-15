@@ -52,4 +52,4 @@
 
 - [资深前端--yck](https://yuchengkai.cn/home/)
 
-- [美团只能支付--呆恋小喵](https://sunmengyuan.github.io/garden/views/posts/)
+- [美团智能支付--呆恋小喵](https://sunmengyuan.github.io/garden/views/posts/)

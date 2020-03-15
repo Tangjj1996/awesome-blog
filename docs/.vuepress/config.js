@@ -23,7 +23,7 @@ module.exports = {
             { text: "blog", link: '/blog/' },
             { text: '库', link: '/lib/' },
             { text: "前端", link: '/FE/' },
-            { text: "后端", link: '/EE/' }
+            { text: "后端", link: '/BE/' }
         ],
         // 侧边栏
         sidebar: utils.interSiderbars(),

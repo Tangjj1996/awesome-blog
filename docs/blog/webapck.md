@@ -49,3 +49,5 @@ module.exports = {
 ```
 
 然后根据环境的不同，选择相应的模板
+
+使用`url-loader`记得把`esModule`设为`fasle`，否则，`<img src={require('xxx.jpg')}>`会出现`<img scr=[Module Object]>`
