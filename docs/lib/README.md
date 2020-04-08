@@ -53,3 +53,7 @@
 - [资深前端--yck](https://yuchengkai.cn/home/)
 
 - [美团智能支付--呆恋小喵](https://sunmengyuan.github.io/garden/views/posts/)
+
+- [山月行的琐碎博客](https://shanyue.tech/)
+
+- [凹凸实验室](https://aotu.io/)
