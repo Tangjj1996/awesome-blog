@@ -242,3 +242,5 @@ function deepSequence (propTree, func) {
 
 deepSequence(tree, node => console.log(node))
 ```
+## 3. script defer async 差别
+![图片](https://umatang.gitee.io/blog/module script.png)
