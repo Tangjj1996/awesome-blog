@@ -21,14 +21,14 @@ module.exports = {
         nav: [
             { text: '首页', link: '/' },
             { text: "blog", link: '/blog/' },
-            { text: "技术", link: '/technology/' },
-            { text: "成长", link: '/growth/' },
-            { text: "心情", link: '/journal/' },
+            { text: '库', link: '/lib/' },
+            { text: "前端", link: '/FE/' },
+            { text: "后端", link: '/BE/' }
         ],
         // 侧边栏
         sidebar: utils.interSiderbars(),
 
-        repo: 'Tangjj1996/awesome-blog',
+        repo: 'Tangjj1996',
         // 侧边栏提取深度
         sidebarDepth: 3,
         // 最近更新
